@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tousifkhan.github.io/sitemap.xml

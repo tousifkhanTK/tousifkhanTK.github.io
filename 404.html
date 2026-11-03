@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en" data-mode="dark"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#151312"/><link rel="icon" type="image/png" href="/images/favicon.png"/><link rel="modulepreload" href="/assets/manifest-db15ad13.js"/><link rel="modulepreload" href="/assets/entry.client-Dgn1TTJN.js"/><link rel="modulepreload" href="/assets/jsx-runtime-Yykwgpsd.js"/><link rel="modulepreload" href="/assets/root-C1m7NMln.js"/><link rel="modulepreload" href="/assets/content-VhzD0vSu.js"/><link rel="modulepreload" href="/assets/walk-DRmGk2lr.js"/><link rel="modulepreload" href="/assets/useDialog-DuITQrjx.js"/><link rel="modulepreload" href="/assets/scroll-DUacFMLo.js"/><script>(function(){var d=document.documentElement;d.classList.add('js');try{var nt=performance.getEntriesByType('navigation')[0];if(!nt||nt.type!=='back_forward'){sessionStorage.removeItem('react-router-scroll-positions');if('scrollRestoration' in history)history.scrollRestoration='manual';if(!location.hash)window.scrollTo(0,0)}}catch(e){}var n=navigator,m=n.deviceMemory||8,c=n.hardwareConcurrency||8,s=n.connection&&n.connection.saveData;if(m<=2||c<=2||s)d.classList.add('lite');try{var md=localStorage.getItem('tk-mode')==='light'?'light':'dark';document.documentElement.dataset.mode=md;var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',md==='light'?'#ffffff':'#151312')}catch(e){}})()</script><link rel="stylesheet" href="/assets/root-_EGRGba2.css"/></head><body><script>(function(){
+var d=document,w=window,html=d.documentElement;
+if(!html.classList.contains('js'))return;
+var MIN=2400,HOLD=250,READY_AT=900,GONE_AT=1300,FAILSAFE=10000,TAIL=4000;
+var t0=performance.now(),shown=0,leaveAt=0,goneAt=0,sentReady=false,sentDone=false;
+var fontsDone=!d.fonts,loadDone=d.readyState==='complete';
+if(d.fonts)d.fonts.ready.then(function(){fontsDone=true});
+w.addEventListener('load',function(){loadDone=true});
+w.__intro=w.__intro||{ready:false,done:false};
+function apply(now){
+  html.classList.add('js');
+  var sinceLeave=leaveAt&&now>=leaveAt?now-leaveAt:-1;
+  var leaving=sinceLeave>=0,ready=sinceLeave>=READY_AT,gone=sinceLeave>=GONE_AT;
+  var root=d.getElementById('ld');
+  if(root){
+    root.style.setProperty('--p',shown.toFixed(4));
+    var num=root.querySelector('.ld__num span');
+    if(num)num.textContent=('00'+Math.round(shown*100)).slice(-3);
+    var pills=root.querySelectorAll('.ld__pill');
+    for(var i=0;i<pills.length;i++)pills[i].classList.toggle('on',shown>=(i+1)/pills.length-.001);
+    root.classList.toggle('ld--leaving',leaving);
+    root.classList.toggle('ld--gone',gone);
+  }
+  if(!gone)html.style.overflow='hidden';
+  if(ready&&d.body)d.body.classList.add('ready');
+  if(ready&&!sentReady){sentReady=true;w.__intro.ready=true;w.dispatchEvent(new Event('intro:ready'))}
+  if(gone&&!sentDone){sentDone=true;w.__intro.done=true;html.style.overflow='';goneAt=now;w.dispatchEvent(new Event('intro:done'))}
+}
+setTimeout(function(){if(!leaveAt){shown=1;leaveAt=performance.now()}},FAILSAFE);
+function frame(){
+  var now=performance.now();
+  if(!leaveAt){
+    var real=.15+(fontsDone?.35:0)+(loadDone?.5:0);
+    var goal=Math.min(real,(now-t0)/MIN);
+    shown+=(goal-shown)*.12;
+    if(goal-shown<.002)shown=goal;
+    if(shown>=.9995)leaveAt=now+HOLD;
+    else if(now-t0>=FAILSAFE){shown=1;leaveAt=now}
+  }
+  apply(now);
+  if(!goneAt||now-goneAt<TAIL)requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+})();</script><form name="contact" data-netlify="true" netlify-honeypot="company" hidden=""><input name="name"/><input name="email"/><textarea name="project"></textarea><input name="company"/></form><script>window.__reactRouterContext = {"basename":"/","future":{"unstable_customRouteDiscovery":false,"unstable_enableNodeReadableStream":false,"unstable_optimizeDeps":false},"routeDiscovery":{"mode":"initial"},"ssr":false,"isSpaMode":true,"unstable_apiOnly":false};window.__reactRouterContext.stream = new ReadableStream({start(controller){window.__reactRouterContext.streamController = controller;}}).pipeThrough(new TextEncoderStream());</script><script type="module" async="">import "/assets/manifest-db15ad13.js";
+import * as route0 from "/assets/root-C1m7NMln.js";
+  
+  window.__reactRouterRouteModules = {"root":route0};
+
+import("/assets/entry.client-Dgn1TTJN.js");</script><!--$--><script>window.__reactRouterContext.streamController.enqueue("[{\"_1\":2,\"_3\":-5,\"_4\":-5},\"loaderData\",{},\"actionData\",\"errors\"]\n");</script><!--$--><script>window.__reactRouterContext.streamController.close();</script><!--/$--><!--/$--></body></html>
